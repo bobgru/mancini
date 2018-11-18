@@ -23,9 +23,10 @@ As yet I also don't honor some notation regarding dynamics or articulation.
 Some day I'll do some project housekeeping. In the meantime, the way I hear
 the music is as follows:
 
-    clone Euterpea2
-    change to Euterpea2 directory
-    cabal repl
-    :l ../mancini/baby-elephant-walk.hs
-    main
-
+```
+clone Euterpea2
+change to Euterpea2 directory
+cabal repl
+:l ../mancini/baby-elephant-walk.hs
+main
+```
