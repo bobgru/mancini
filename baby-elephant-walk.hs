@@ -13,6 +13,9 @@ graceNote' :: Music Pitch -> Music Pitch -> Music Pitch
 graceNote' m1 m2 = cut (d/8) m1 :+: remove (d/8) m2
   where d = dur m2 
 
+stac :: Music Pitch -> Music Pitch
+stac = Modify (Phrase [Art (Staccato (1/2))])
+
 lh1 = line $ [ f  2 en :=: c 3 en
              , f  2 en :=: c 3 en
              , gs 2 en
@@ -118,7 +121,7 @@ lh18 = line $  [ f  2 en :=: c  3 en
 
 lh19 = line $  [ f  2 wn :=: c  3 wn ]
 
-leftPage1 = line $ concat $
+leftPage1 = stac $ line $ concat $
   [ [lh1, lh1]
   , [lh1, lh1]
   , [lh1, lh1]
@@ -134,7 +137,7 @@ leftPage1 = line $ concat $
   , [lh8, lh9] ]
 
 
-leftPage2 = line $ concat $
+leftPage2 = stac $ line $ concat $
   [ [lh4, lh6]
   , [lh1, lh1]
   , [lh1, lh1]
@@ -151,37 +154,45 @@ leftPage2 = line $ concat $
   , [lh1, lh1]
   , [lh1, lh7] ]
 
-leftPage3 = line $ concat $
-  [ [lh8, lh9] 
-  , [lh4, lh6]
-  , [lh1, lh1]
-  , [lh10, lh11]
-  , [lh1, lh1]
-  , [lh1, lh12]
-  , [lh13]
-  , [wnr]
-  , [lh14]
-  , [lh15]
-  , [lh16]
-  , [lh17]
-  , [lh1, lh1]
-  , [lh1, lh3]
-  , [lh8, lh9] ]
+leftPage3 =
+  (stac $ line $ concat $
+    [ [lh8, lh9] 
+    , [lh4, lh6]
+    , [lh1, lh1]
+    , [lh10, lh11]
+    , [lh1, lh1] ])
+  :+:
+  (line $ concat $
+    [ [lh1, lh12]
+    , [lh13]
+    , [wnr]
+    , [lh14]
+    , [lh15] ])
+  :+:
+  (stac $ line $ concat $
+    [ [lh16]
+    , [lh17]
+    , [lh1, lh1]
+    , [lh1, lh3]
+    , [lh8, lh9] ])
 
-leftPage4 = line $ concat $
-  [ [lh4, lh6]
-  , [lh1, lh1]
-  , [lh1, lh1]
-  , [lh1, lh1]
-  , [lh1, lh3]
-  , [lh4, lh4]
-  , [lh4, lh6]
-  , [lh1, lh1]
-  , [lh1, lh7]
-  , [lh8, lh9]
-  , [lh4, lh6]
-  , [lh18]
-  , [lh19] ]
+leftPage4 = 
+  (stac $ line $ concat $
+    [ [lh4, lh6]
+    , [lh1, lh1]
+    , [lh1, lh1]
+    , [lh1, lh1]
+    , [lh1, lh3]
+    , [lh4, lh4]
+    , [lh4, lh6]
+    , [lh1, lh1]
+    , [lh1, lh7]
+    , [lh8, lh9]
+    , [lh4, lh6] ])
+  :+:
+  (line $ concat $
+    [ [lh18]
+    , [lh19] ])
 
 leftLine = line $
   [ leftPage1
@@ -195,24 +206,27 @@ rh1 = line $ [ qnr
              , ef 6 en :=: g 6 en
              , ef 6 en :=: g 6 en ]
 
-rh2 = line $ [ f 5 den
-             , a 5 sn
-             , c 6 en
-             , f 6 en
-             , a 6 en
-             , g 6 en
-             , f 6 en
-             , d 6 en ]
                     
-rh2' = line $  [ f 4 den
-               , a 4 sn
-               , c 5 en
-               , f 5 en
-               , a 5 en
-               , g 5 en
-               , f 5 en
-               , d 5 en ]
-                    
+rhTheme =
+  line $ [ f 4 den
+         , a 4 sn
+         , c 5 en
+         , f 5 en
+         , a 5 en
+         , g 5 en
+         , f 5 en
+         , d 5 en ]
+
+rhThemeStac =
+  line $ [ f 4 den
+         , stac (a 4 sn)
+         , stac (c 5 en)
+         , stac (f 5 en)
+         , a 5 en
+         , g 5 en
+         , stac (f 5 en)
+         , stac (d 5 en) ]
+
 rh3 = line $ [ b 5 en
              , c 6 en ]
 
@@ -329,14 +343,14 @@ rh10 = line $  [ ef 5 en
 rh11 = line $  [ qnr
                , c  3 qn :=: f  3 qn :=: a  3 qn
                , qnr
-               , d  3 en :=: ef  3 en :=: g  3 en 
-               , d  3 en :=: ef  3 en :=: g  3 en ]
+               , stac (d  3 en :=: ef  3 en :=: g  3 en)
+               , stac (d  3 en :=: ef  3 en :=: g  3 en) ]
 
 rh12 = (line $ [ ef 4 en
                , f  4 en
                , qnr
                , hnr ]) :=:
-       (line $ [ qnr
+       (stac $ line $ [ qnr
                , d  4 en
                , d  4 en
                , c  4 en
@@ -472,13 +486,13 @@ rightPage1 = line $ concat $
   , [wnr]
   , [rh1]
   , [wnr]
-  , [rh2]
+  , [fmap (trans 12) rhThemeStac]
   , [rh3, qnr, hnr]
-  , [rh2]
+  , [fmap (trans 12) rhThemeStac]
   , [rh4]
   , [rh5]
   , [rh6, qnr, hnr]
-  , [rh2]
+  , [fmap (trans 12) rhThemeStac]
   , [rh3, qnr, qnr, enr, c 6 en]
   , [rh7] ]
 
@@ -490,13 +504,13 @@ rightPage2 = line $ concat $
   , [wnr]
   , [rh11]
   , [wnr]
-  , [rh2']
+  , [rhThemeStac]
   , [rh3', qnr, hnr]
-  , [rh2']
+  , [rhThemeStac]
   , [rh4']
   , [rh5']
   , [rh6', qnr, hnr]
-  , [rh2']
+  , [rhThemeStac]
   , [rh3', qnr, hnr] ]
 
 rightPage3 = line $ concat $
@@ -518,13 +532,13 @@ rightPage3 = line $ concat $
 
 rightPage4 = line $ concat $
   [ [rh24]
-  , [rh2 :=: rh2']
+  , [rhTheme :=: fmap (trans 12) rhTheme]
   , [rh3 :=: rh3', qnr, hnr]
-  , [rh2 :=: rh2']
+  , [rhTheme :=: fmap (trans 12) rhTheme]
   , [rh4 :=: rh4']
   , [rh5 :=: rh5x]
   , [rh6x :=: rh6x', qnr, hnr]
-  , [rh2 :=: rh2']
+  , [rhTheme :=: fmap (trans 12) rhTheme]
   , [rh3 :=: rh3', qnr, qnr, enr, c 6 en :=: c 5 en]
   , [rh7x :=: rh7x']
   , [rh25 :=: rh25']
