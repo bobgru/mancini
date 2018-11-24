@@ -192,10 +192,10 @@ rh5' =  rh5x
 
 theme6 gr = line $ [ gr $ af 4 en, f  4 en ]
 
-rh6'  = theme6 (graceNote (-1))
-rh6   = fmap (trans 12) $ theme6 (graceNote (-1))
-rh6x' = theme6 id
-rh6x  = fmap (trans 12) $ theme6 id
+theme6_v1  = theme6 (graceNote (-1))
+theme6_v2   = fmap (trans 12) $ theme6 (graceNote (-1))
+theme6_v3 = theme6 id
+theme6_v4  = fmap (trans 12) $ theme6 id
 
 theme7 gr12 gr3 = 
   line $ [ gr12 $ g  5 qn
@@ -231,21 +231,21 @@ theme10 =
          , qnr
          , hnr ]
 
-rh7   = fmap (trans 12) $ theme7 id (graceNote (-1))
-rh7'  = theme7 (graceNote (-1)) (graceNote (-1))
-rh7x' = theme7 id id
-rh7x  = fmap (trans 12) $ theme7 id id
-rh23  = fmap (trans 12) $ theme7 id (graceNote (-1))
+theme7_v1 = fmap (trans 12) $ theme7 id (graceNote (-1))
+theme7_v2 = theme7 (graceNote (-1)) (graceNote (-1))
+theme7_v3 = theme7 id id
+theme7_v4 = fmap (trans 12) $ theme7 id id
+theme7_v5 = fmap (trans 12) $ theme7 id (graceNote (-1))
 
-rh8   = fmap (trans 12) $ theme8 id
-rh8'  = theme8 (graceNote (-1))
-rh25' = theme8 id
-rh25  = fmap (trans 12) $ theme8 id
+theme8_v1 = fmap (trans 12) $ theme8 id
+theme8_v2 = theme8 (graceNote (-1))
+theme8_v3 = theme8 id
+theme8_v4 = fmap (trans 12) $ theme8 id
 
-rh9  = fmap (trans 12) $ theme9 id
-rh9' = theme9 (graceNote (-1))
+theme9_v1 = fmap (trans 12) $ theme9 id
+theme9_v2 = theme9 (graceNote (-1))
 
-rh10 = fmap (trans 12 ) $ theme10
+theme10_v1 = fmap (trans 12 ) $ theme10
 
 rh11 = line $  [ qnr
                , c  3 qn :=: f  3 qn :=: a  3 qn
@@ -353,15 +353,15 @@ rightPage1 = line $ concat $
   , [fmap (trans 12) theme1_v1]
   , [rh4]
   , [rh5]
-  , [rh6, qnr, hnr]
+  , [theme6_v2, qnr, hnr]
   , [fmap (trans 12) theme1_v1]
   , [rh3, qnr, qnr, enr, c 6 en]
-  , [rh7] ]
+  , [theme7_v1] ]
 
 rightPage2 = line $ concat $
-  [ [rh8]
-  , [rh9]
-  , [rh10]
+  [ [theme8_v1]
+  , [theme9_v1]
+  , [theme10_v1]
   , [rh11]
   , [wnr]
   , [rh11]
@@ -371,14 +371,14 @@ rightPage2 = line $ concat $
   , [theme1_v1]
   , [rh4']
   , [rh5']
-  , [rh6', qnr, hnr]
+  , [theme6_v1, qnr, hnr]
   , [theme1_v1]
   , [rh3', qnr, hnr] ]
 
 rightPage3 = line $ concat $
-  [ [rh7']
-  , [rh8']
-  , [rh9']
+  [ [theme7_v2]
+  , [theme8_v2]
+  , [theme9_v2]
   , [rh12]
   , [rh13]
   , [rh14]
@@ -390,20 +390,20 @@ rightPage3 = line $ concat $
   , [rh20]
   , [theme1_v3]
   , [rh22]
-  , [rh23] ]
+  , [theme7_v5] ]
 
 rightPage4 = line $ concat $
-  [ [rh25]
+  [ [theme8_v4]
   , [theme1_v2 :=: fmap (trans 12) theme1_v2]
   , [rh3 :=: rh3', qnr, hnr]
   , [theme1_v2 :=: fmap (trans 12) theme1_v2]
   , [rh4 :=: rh4']
   , [rh5 :=: rh5x]
-  , [rh6x :=: rh6x', qnr, hnr]
+  , [theme6_v4 :=: theme6_v3, qnr, hnr]
   , [theme1_v2 :=: fmap (trans 12) theme1_v2]
   , [rh3 :=: rh3', qnr, qnr, enr, c 6 en :=: c 5 en]
-  , [rh7x :=: rh7x']
-  , [rh25 :=: rh25']
+  , [theme7_v4 :=: theme7_v3]
+  , [theme8_v4 :=: theme8_v3]
   , [rh26]
   , [rh27] ]
 
