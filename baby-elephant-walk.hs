@@ -108,23 +108,21 @@ lh18 = line $  [ f  2 en :=: c  3 en
 lh19 = line $  [ f  2 wn :=: c  3 wn ]
 
 leftPage1 = stac $ line $ concat $
-  [ 
-    take 15 (repeat lh1)
-  , [lh3], take 3 (repeat lh4)
-  , [lh6], take 3 (repeat lh1)
-  , [lh7, lh8, lh9, lh4, lh6]
+  [ take 15 (repeat lh1), [lh3]
+  , take  3 (repeat lh4), [lh6]
+  , take  3 (repeat lh1), [lh7]
+  , [lh8, lh9, lh4, lh6]
 
   , take 4 (repeat lh1)
 
-  , take 15 (repeat lh1)
-  , [lh3], take 3 (repeat lh4)
-  , [lh6], take 3 (repeat lh1)
-  , [lh7, lh8, lh9, lh4, lh6]
+  , take 15 (repeat lh1), [lh3]
+  , take  3 (repeat lh4), [lh6]
+  , take  3 (repeat lh1), [lh7]
+  , [lh8, lh9, lh4, lh6]
 
   , take 2 (repeat lh1)
   , [lh10, lh11]
-  , take 2 (repeat lh1)
-  ]
+  , take 2 (repeat lh1) ]
 
 leftPage3 =
   line $ concat $
@@ -137,15 +135,13 @@ leftPage3 =
 leftPage4 = 
 
   (stac $ line $ concat $
-    [ 
-      [lh16, lh17, lh17]
-    , [lh6], take 3 (repeat lh1)
-    , [lh3, lh8, lh9, lh4]
-    , [lh6], take 7 (repeat lh1)
-    , [lh3], take 3 (repeat lh4)
-    , [lh6], take 3 (repeat lh1)
-    , [lh7, lh8, lh9, lh4, lh6]
-    ])
+    [ [lh16, lh17, lh17, lh6]
+    , take 3 (repeat lh1), [lh3]
+    , [lh8, lh9, lh4, lh6]
+    , take 7 (repeat lh1), [lh3]
+    , take 3 (repeat lh4), [lh6],
+    , take 3 (repeat lh1), [lh7]
+    , [lh8, lh9, lh4, lh6] ])
   :+:
   (line $ concat $
     [ [lh18]
